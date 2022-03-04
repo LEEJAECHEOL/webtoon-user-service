@@ -6,7 +6,6 @@ import com.webtoon.userservice.business.user.form.response.Profile;
 import com.webtoon.userservice.business.user.service.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.core.env.Environment;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
@@ -26,7 +25,6 @@ public class UserController {
   }
 
   @GetMapping("/me/profile")
-  @ResponseStatus(HttpStatus.CREATED)
   public Profile getProfile(@AuthenticationPrincipal User user) {
     return Profile.builder()
         .email(user.getEmail())
@@ -36,14 +34,9 @@ public class UserController {
         .build();
   }
 
-  /**
-   * @date : 2021/12/05 3:52 오후
-   * @author : lee
-   * @version : 1.0.0
-   * @role : 테스트 용 회원가입
-   */
 
-  @PostMapping("/join")
+  @PostMapping(value = "/join")
+  @ResponseStatus(HttpStatus.CREATED)
   public void join(@Valid @RequestBody Join join) {
     userService.save(join.toEntity());
   }
