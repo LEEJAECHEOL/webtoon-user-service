@@ -56,6 +56,7 @@ public class User extends BaseEntity implements UserDetails {
   @Column(name = "is_deleted", columnDefinition = "tinyint(1) default 0")
   private boolean isDeleted;
 
+  @Enumerated(EnumType.STRING)
   @ElementCollection(fetch = EAGER)
   private Set<Role> roles = new HashSet<>();
 
