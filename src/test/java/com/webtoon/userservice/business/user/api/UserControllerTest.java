@@ -34,12 +34,6 @@ class UserControllerTest extends BaseControllerUnitTest {
   @MockBean
   private UserService userService;
 
-  @BeforeEach
-  public void setup() {
-    //Init MockMvc Object and build
-    mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
-  }
-
   @Test
   @DisplayName("회원가입")
   public void join_test() throws Exception {
